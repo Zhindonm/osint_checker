@@ -10,7 +10,7 @@ At this moment AbuseIPDB is implemented and I am looking into how to integrate o
 
 ### Requirements
 
-If you don't have admin rights then I recommend running this from a virtual machine with a Linux guest since you will need to install dependencies. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host.
+If you don't have admin rights then I recommend running this from a virtual machine with a Linux guest since you will need to install dependencies. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host. I explain how to do this later.
 
 The first step is making sure you have python. Run the following from the command line.
 
@@ -26,6 +26,8 @@ The first step is making sure you have python. Run the following from the comman
  ```
  sudo pip install -r requirements.txt
  ```
+ 
+ Finally you will need to obtain your own API key from AbuseIPDB by creating an account. Then go to your account > API Settings and here you will find your API key. Now open the file in this project named `api_keys` and replace the string `YOUR_KEY_GOES_HERE` with your key. Do not remove the ticks ( ' ) present before and after your key.
  
  ### How to use
  
