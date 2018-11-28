@@ -8,6 +8,8 @@ It is intended to work with a csv file that contains the IP addresses you would 
 
 At this moment AbuseIPDB is implemented and I am looking into how to integrate other OSINT better.
 
+AbuseIPDB API has a limit of 60 requests per minute which means I had to intentionally slow down requests to the minimum necessary time to prevent exceeding this (Don't worry I did the math). Additionally you can only do a maximum of 1000 requests per day.
+
 ### Requirements
 
 If you don't have admin rights then I recommend running this from a virtual machine with a Linux guest since you will need to install dependencies. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host. I explain how to do this later.
