@@ -53,5 +53,7 @@ The first step is making sure you have python. Run the following from the comman
  
  Make sure you replace **foo** and **bar** with the correct names. Do not use spaces in the names unless you are more familiar with the command line.
  
+ When you shutdown your vm I suggest saving the state of the machine instead of anything else so you can access it later faster.
+ 
  
  
