@@ -282,8 +282,8 @@ def read_file(fname):
             #print address
             IPS.append(address)
 
-    #print IPS
     IPS = list(set(IPS))
+    #print IPS
     number_ips = len(IPS)
     colored(number_ips, 'magenta', attrs=['bold'])
     print '{0} IPs found in file'.format(number_ips)
@@ -300,7 +300,7 @@ def basic_error_handling():
 def main():
     #IP = '49.204.223.197'
     #days = '365'
-
+    print sys.argv[1]
     time_start_program = Decimal(time.time())
 
     set_api_keys()
@@ -318,7 +318,7 @@ def main():
     check_IPs(flag_abuseIPDB)
     write_file(fname)
     time_end_program = Decimal(time.time())
-    print time_end_program - time_start_program
+    #print time_end_program - time_start_program
 
 
 if __name__ == '__main__':
