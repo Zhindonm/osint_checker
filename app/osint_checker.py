@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import re
+import os
 import csv
 import sys
 import json
@@ -24,6 +25,7 @@ IPS = []
 days = '365'
 mode = 'IP Address (Impacted)'
 impacted_or_origin = 'Origin'
+current_folder = os.path.dirname(__file__)
 
 def set_mode(option):
     global mode
@@ -36,7 +38,7 @@ def set_mode(option):
 def set_api_keys():
     # with open(fname) as f:
     #     content = f.read().splitlines()
-    fname = './api_keys'
+    fname = current_folder + '/api_keys'
     with open(fname) as f_in:
         lines = filter(None, (line.rstrip() for line in f_in))
 
@@ -290,7 +292,7 @@ def read_file(fname):
 
 
 def basic_error_handling():
-    if (len(sys.argv) < 2):
+    if (sys.argv[1] not in ['-O', '-I']):
         print("Missing argument use -O or -I to choose between Origin or Impacted")
         return False
 
