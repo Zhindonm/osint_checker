@@ -10,18 +10,20 @@ AbuseIPDB API has a limit of 60 requests per minute which means I had to intenti
 
 ## How to use it
 
-There are two different ways of running the program, from your local machine or using docker
+There are two different ways of running the program, using docker or a virtual machine
 
 ## Docker
 
-Ensure that you have `Docker` installed and that your machine is setup to use XWindows. If you are using MacOS, ensure that `XQuartz` is installed. From this folder, open a terminal and run the command:
+All logs should be downloaded and placed in the following directory `/path/to/this/project/osint_checker/logs/`
 
-```bash
-bash run.sh -I # For Impacted
-bash run.sh -O # For Origin
-```
+Ensure that you have `Docker` installed. If you are using MacOS, ensure that `XQuartz` is installed. From this folder, open a terminal and run the command:
 
-This will setup the container, and run the graphical interface.
+Open a terminal and change directory to `/path/to/this/project/osint_checker`. 
+
+Here you can use the provided bash script with the command `bash run.sh -I` to check for addresses found in the **Impacted** column
+Alternatively do `bash run.sh -O ` to check for addresses found in the **Origin** column. Both option will open a windows to let you choose the file you would like to upload for investigation.
+
+If this is the first time this is executed it will setup the container and the next time it will be faster.
 
 ## Using a Virtual Machine
 
