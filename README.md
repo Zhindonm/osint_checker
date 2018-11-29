@@ -14,7 +14,7 @@ There are two different ways of running the program, from your local machine or 
 
 ## Docker
 
-Ensure that you have Docker installed and that your machine is setup to use XWindows. If you are using MacOS, ensure that `XQuartz` is installed. From this folder, open a terminal and run the command:
+Ensure that you have `Docker` installed and that your machine is setup to use XWindows. If you are using MacOS, ensure that `XQuartz` is installed. From this folder, open a terminal and run the command:
 
 ```bash
 bash run.sh -I # For Impacted
