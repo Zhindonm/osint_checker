@@ -1,22 +1,5 @@
 # osint_checker
 
-There are two different ways of running the program, from your local machine or using docker
-
-## Docker
-
-Ensure that you have Docker installed and that your machine is setup to use XWindows. If you are using MacOS, ensure that `XQuartz` is installed. From this folder, open a terminal and run the command:
-
-```bash
-bash run.sh -I # For Impacted
-bash run.sh -O # For Origin
-```
-
-This will setup the container, and run the graphical interface.
-
-## Manually
-
-### Description
-
 The program aims to quickly investigate a bunch of IPs using OSINT.
 
 It is intended to work with a csv file that contains the IP addresses you would like to check against OSINT, specifically the raw LogRhythm logs you can export from the Web Console. It will produce a csv with the results in the same directory as the input file. I highly advise to not change anything in the csv logs you get from LogRhythm since the program will validate the content to make sure only valid IP addresses are investigated and it will remove duplicates.
@@ -25,9 +8,30 @@ At this moment AbuseIPDB is implemented and I am looking into how to integrate o
 
 AbuseIPDB API has a limit of 60 requests per minute which means I had to intentionally slow down requests to the minimum necessary time to prevent exceeding this (Don't worry I did the math). Additionally you can only do a maximum of 1000 requests per day.
 
+## How to use it
+
+There are two different ways of running the program, from your local machine or using docker
+
+## Docker
+
+Ensure that you have `Docker` installed and that your machine is setup to use XWindows. If you are using MacOS, ensure that `XQuartz` is installed. From this folder, open a terminal and run the command:
+
+```bash
+bash run.sh -I # For Impacted
+bash run.sh -O # For Origin
+```
+
+This will setup the container, and run the graphical interface.
+
+## Using a Virtual Machine
+
+The instructions found here are for Virtual Box.
+
+If you have trouble using docker then this solution will work since there are dependencies that need to be installed. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host. I explain how to do this later.
+
 ### Requirements
 
-If you don't have admin rights then I recommend running this from a virtual machine with a Linux guest since you will need to install dependencies. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host. I explain how to do this later.
+In your VM:
 
 The first step is making sure you have python. Run the following from the command line.
 
