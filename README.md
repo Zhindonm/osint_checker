@@ -16,7 +16,7 @@ There are two different ways of running the program, using docker or a virtual m
 
 All logs should be downloaded and placed in the following directory `/path/to/this/project/osint_checker/logs/`
 
-Ensure that you have `Docker` installed. If you are using MacOS, ensure that `XQuartz` is installed. From this folder, open a terminal and run the command:
+Ensure that you have `Docker` installed. If you are using MacOS, ensure that `XQuartz` is installed. 
 
 Open a terminal and change directory to `/path/to/this/project/osint_checker`. 
 
