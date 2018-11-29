@@ -23,11 +23,15 @@ bash run.sh -O # For Origin
 
 This will setup the container, and run the graphical interface.
 
-## Manually
+## Using a Virtual Machine
+
+The instructions found here are for Virtual Box.
+
+If you have trouble using docker then this solution will work since there are dependencies that need to be installed. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host. I explain how to do this later.
 
 ### Requirements
 
-If you don't have admin rights then I recommend running this from a virtual machine with a Linux guest since you will need to install dependencies. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host. I explain how to do this later.
+In your VM:
 
 The first step is making sure you have python. Run the following from the command line.
 
