@@ -72,9 +72,10 @@ def check(result, days, api_key):
         for record in data:
             categories = record.get('category')
             for num in categories:
-                category = get_category(num)
-                #print category
-                result.categories[category] +=  1
+                if num in range (3,24):
+                    category = get_category(num)
+                    #print category
+                    result.categories[category] +=  1
 
 
         score = data[0].get('abuseConfidenceScore')
@@ -88,9 +89,10 @@ def check(result, days, api_key):
     else:
         categories = data.get('category')
         for num in categories:
-            category = get_category(num)
-            #print category
-            result.categories[category] +=  1
+            if num in range (3,24):
+                category = get_category(num)
+                #print category
+                result.categories[category] +=  1
 
 
         score = data.get('abuseConfidenceScore')

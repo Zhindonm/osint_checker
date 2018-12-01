@@ -44,6 +44,7 @@ def set_api_keys():
 
     return api_key
 
+
 def print_start_checking(flag_abuseIPDB):
     if flag_abuseIPDB:
         print '{0} to check {1}'.format(colored('Starting', 'yellow', attrs=['bold']), colored('AbuseIPDB', 'white', attrs=['bold']))
@@ -67,7 +68,7 @@ def check_IPs(IP_addresses, api_key, flag_abuseIPDB):
             result = r.Result(IP)
 
             time_start = time.time()
-            #print time_start
+            # print time_start
 
             if flag_abuseIPDB:
                 AIPDB.check(result, days, api_key.abuseIPDB)
@@ -88,9 +89,9 @@ def check_timeout(start):
     start = Decimal(start)
     current = Decimal(time.time())
     timeout_abuseIPDB = AIPDB.get_timeout()
-    #print current
+    # print current
     time_passed = current - start
-    #print time_passed
+    # print time_passed
 
     if time_passed < timeout_abuseIPDB:
         time_to_wait = timeout_abuseIPDB - time_passed
@@ -98,6 +99,8 @@ def check_timeout(start):
         #print time_to_wait
         time.sleep(time_to_wait)
         #print 'done sleeping'
+
+    # timeouts for other osint go here
 
 
 def basic_error_handling():
