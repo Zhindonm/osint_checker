@@ -1,6 +1,9 @@
+import abuseIPDB as AIPDB
+
 class Result:
     def __init__(self, IP):
         self.IP = IP
+        #Abuse IPDB
         self.scoreAbuseIPDB = 0
         self.categories = {
             'Fraud_Orders' : 0,
@@ -25,10 +28,10 @@ class Result:
             'SSH' : 0,
             'IoT_Targeted' : 0,}
         self.numOfReports = 0
-        self.earliestReport = 'NA'
-        self.latestReport = 'NA'
-        self.country = 'NA'
-        self.isoCode = 'NA'
+        self.earliestReport = 'None'
+        self.latestReport = 'None'
+        self.country = 'None'
+        self.isoCode = 'None'
 
 
     def __eq__(self, other):
@@ -39,16 +42,15 @@ class Result:
         return self.scoreAbuseIPDB > other.scoreAbuseIPDB
 
     def get_values(self):
-        line = '{0},{1},{2},{3},{4},{5},{6},{7}'.format(
-                            self.IP,
-                            self.scoreAbuseIPDB,
-                            self.get_non_zero_categories(),
-                            self.numOfReports,
-                            self.earliestReport,
-                            self.latestReport,
-                            self.country,
-                            self.isoCode,)
-        return line
+        values = [self.IP,
+                    self.scoreAbuseIPDB,
+                    self.get_non_zero_categories(),
+                    self.numOfReports,
+                    self.earliestReport,
+                    self.latestReport,
+                    self.country,
+                    self.isoCode,]
+        return values
 
 
 
@@ -61,18 +63,19 @@ class Result:
             if value > 0:
                 non_zero_categories[key] = value
 
+        if not non_zero_categories:
+            return 'None'
         return non_zero_categories
 
 def test(IP):
     IP.numOfReports += 1
 
+def get_osint_headers():
+    headers = ['OSINT',]
+    headers.extend(AIPDB.get_osint_headers())
+    return headers
+
 def get_headers():
-    line = '{0},{1},{2},{3},{4},{5},{6},{7}'.format(
-                        "IP",
-                        "Score AbuseIPDB ",
-                        "Categories AbuseIPDB ",
-                        "Num of reports AbuseIPDB ",
-                        "First seen AbuseIPDB",
-                        "Last seen AbuseIPDB",
-                        "Country",
-                        "isoCode",)
+    headers = ['IP',]
+    headers.extend(AIPDB.get_headers())
+    return headers

@@ -124,8 +124,8 @@ def main():
     results_osint = check_IPs(IP_addresses, api_key, flag_abuseIPDB)
 
 
-    FP.print_results(results_osint)
-    #FP.write_file(fname, results_osint)
+    # FP.print_results(results_osint)
+    FP.write_file(fname, results_osint)
     time_end_program = Decimal(time.time())
     #print time_end_program - time_start_program
 

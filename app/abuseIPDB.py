@@ -1,6 +1,24 @@
 import json
 import requests
 
+def get_osint_headers():
+    headers = []
+    for header in range(0, len(get_headers())):
+        headers.append('Abuse IPDB')
+    return headers
+
+
+def get_headers():
+    headers = ['Score',
+                'Categories',
+                'Num of reports',
+                'First seen',
+                'Last seen',
+                'Country',
+                'isoCode',]
+    return headers
+
+
 def get_timeout():
     return 1
 

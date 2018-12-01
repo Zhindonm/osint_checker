@@ -15,16 +15,15 @@ def write_file(in_fname, results):
         out_fname += directory + '/'
     out_fname += datetime.datetime.now().strftime("%Y_%b_%d-%Hh%Mm%Ss-OSINT_Result.csv")
 
-    print_fname('Writing', fname)
-    with open(out_fname, 'w', newline='') as csvfile:
-        resultswriter = csv.writer(csvfile,
-                                delimiter=' ',
-                                quotechar='|',
-                                quoting=csv.QUOTE_MINIMAL)
+    print_fname('Writing', out_fname)
+    with open(out_fname, 'w') as csvfile:
+        resultswriter = csv.writer(csvfile)
+
+        resultswriter.writerow(r.get_osint_headers())
         resultswriter.writerow(r.get_headers())
+        for result in results:
+            resultswriter.writerow(result.get_values())
 
-
-    pandas.DataFrame(results).to_csv(out_fname, index=False)
 
 
 def read_file(fname, mode):
