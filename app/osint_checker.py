@@ -117,17 +117,20 @@ def basic_error_handling():
 def main():
     # days = '365'
     # print sys.argv[1]
-    time_start_program = Decimal(time.time())
 
     api_key = api_keys.API_KEYS()
     api_key = set_api_keys()
+    # print api_key.abuseIPDB
 
-    # fname = FP.get_fname()
-    Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
-    fname = askopenfilename()
+    # Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
+    # fname = askopenfilename()
+    fname = '/home/mzhindon/projects/osint_checker/logs/test2.csv' # Hard coded  file for debugging
+
+
 
     mode = set_mode(sys.argv[1])
 
+    time_start_program = Decimal(time.time())
     IP_addresses = FP.read_file(fname, mode)
     flag_abuseIPDB = True
     results_osint = check_IPs(IP_addresses, api_key, flag_abuseIPDB)

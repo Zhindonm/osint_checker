@@ -53,8 +53,9 @@ def get_category(num):
 
 
 def count_categories(result, record):
+    # print record
     categories = record.get('category')
-    if not categories:
+    if categories:
         if type(categories) is list:
             for num in categories:
                 if num in range(3, 24):
@@ -79,8 +80,19 @@ def check(result, days, api_key):
     r = requests.get(request)
     data = r.json()
 
+    # Verify that there are still requests to do
+    try:
+        if data[0].get('title') == 'The user has sent too many requests in a given amount of time.':
+            return False
+    except:
+        try:
+            if data.get('title') == 'The user has sent too many requests in a given amount of time.':
+                return False
+        except:
+            pass #
+
     if not data:
-        return
+        return True
 
     elif type(data) is list:
 
@@ -106,9 +118,6 @@ def check(result, days, api_key):
         latestReport = data.get('created')
         country =  data.get('country')
         isoCode = data.get('isoCode')
-
-    if score == None:
-        return False
 
     result.scoreAbuseIPDB = score
     result.numOfReports = numOfReports
