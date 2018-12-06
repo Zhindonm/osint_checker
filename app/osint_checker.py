@@ -122,9 +122,9 @@ def main():
     api_key = set_api_keys()
     # print api_key.abuseIPDB
 
-    # Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
-    # fname = askopenfilename()
-    fname = '/home/mzhindon/projects/osint_checker/logs/test2.csv' # Hard coded  file for debugging
+    Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
+    fname = askopenfilename()
+    # fname = '/home/mzhindon/projects/osint_checker/logs/test2.csv' # Hard coded  file for debugging
 
 
 
