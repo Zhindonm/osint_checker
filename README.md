@@ -6,17 +6,21 @@ It is intended to work with a csv file that contains the IP addresses you would 
 
 At this moment AbuseIPDB is implemented and I am looking into how to integrate other OSINT better.
 
-AbuseIPDB API has a limit of 60 requests per minute which means I had to intentionally slow down requests to the minimum necessary time to prevent exceeding this (Don't worry I did the math). Additionally you can only do a maximum of 1000 requests per day.
+AbuseIPDB API has a limit of 60 requests per minute which means I had to intentionally slow down requests to the minimum necessary time to prevent exceeding this (Don't worry I did the math). Additionally you can only do a maximum of 1000 requests per day though the program will stop if it detects you have gone above your quota and write the results so far.
+
+## First
+
+You will need to obtain your own API key from AbuseIPDB by creating an account. Then go to your account > API Settings and here you will find your API key. Now open the file in this project named `app/api_keys` and replace the string `YOUR_KEY_GOES_HERE` with your key. Do not remove the ticks ( ' ) present before and after your key.
 
 ## How to use it
 
 There are three ways of running the program: natively, using docker or a virtual machine
 
-# First
+### Natively
 
-You will need to obtain your own API key from AbuseIPDB by creating an account. Then go to your account > API Settings and here you will find your API key. Now open the file in this project named `app/api_keys` and replace the string `YOUR_KEY_GOES_HERE` with your key. Do not remove the ticks ( ' ) present before and after your key.
+Follow the instructions under **Using a Virtual Machine** > **Requirements**
 
-## Docker
+### Docker
 
 All logs should be downloaded and placed in the following directory `/path/to/this/project/osint_checker/logs/`
 
@@ -29,13 +33,13 @@ Alternatively do `bash run.sh -O ` to check for addresses found in the **Origin*
 
 If this is the first time this is executed it will setup the container and the next time it will be faster.
 
-## Using a Virtual Machine
+### Using a Virtual Machine
 
 The instructions found here are for Virtual Box.
 
 If you have trouble using docker then this solution will work since there are dependencies that need to be installed. Additionally you should enable shared folders between guest and host so you can just download logs in the host, run the program from the guest, and the results will be placed in the host. I explain how to do this later.
 
-### Requirements
+#### Requirements
 
 In your VM:
 
@@ -48,33 +52,33 @@ sudo apt-get install python-tk
 sudo apt-get install python-pip
 ```
 
- Then change directory in the command line to the directory in which this prooject is located and type
+Then change directory in the command line to the directory in which this project is located and type
 
- ```
- sudo pip install -r requirements.txt
- ```
+```
+sudo pip install -r requirements.txt
+```
 
+#### How to use
 
+From the command line run `python osint_cheker.py -I` to check for addresses found in the **Impacted** column
+Alternatively run `python osint_cheker.py -O` to check for addresses found in the **Origin** column. Both option will open a windows to let you choose the file you would like to upload for investigation.
 
- ### How to use
+**Make sure you are in the directory /path/to/osint_cheker/apps/** Otherwise it will throw an erro like `python: can't open file 'osint_checker.py': [Errno 2] No such file or directory`
 
- From the command line run `python osint_cheker.py -I` to check for addresses found in the **Impacted** column
- Alternatively run `python osint_cheker.py -O` to check for addresses found in the **Origin** column. Both option will open a windows to let you choose the file you would like to upload for investigation.
+#### Virtual Machine tips
 
- ### Virtual Machine tips
+As I said before I advise to run this from a virtual machine. Make sure you have installed guest additions in order to have bidirectional clipboard, shared folders, etc.
 
- As I said before I advise to run this from a virtual machine. Make sure you have installed guest additions in order to have bidirectional clipboard, shared folders, etc.
+To enable your shared folder do the following in the Host (this is for Virtual Box):
 
- To enable your shared folder do the following in the Host (this is for Virtual Box):
+1. In Virtual Box Manager > Settings > Shared Folder > Add new shared folder (little folder icon with green + icon)
+2. Choose the folder in your host that you would like to share. This folder will be referred as **foo** onwards
+3. Tick make permanent and click ok
 
- 1. In Virtual Box Manager > Settings > Shared Folder > Add new shared folder (little folder icon with green + icon)
- 2. Choose the folder in your host that you would like to share. This folder will be refered as **foo** onwards
- 3. Tick make permanent and click ok
-
- In your Guest OS you will need to mount the folder **logs** found in this project and the one from the Host
+In your Guest OS you will need to mount the folder **logs** found in this project and the one from the Host
 
 `sudo mount -t vboxsf -o rw,uid=1000,gid=1000 foo /path/to/this/project/osint_checker/logs/`
 
- Make sure you replace **foo**  with the correct name. Do not use spaces in the names unless you are more familiar with the command line.
+Make sure you replace **foo**  with the correct name. Do not use spaces in the names unless you are more familiar with the command line.
 
- When you shutdown your vm I suggest saving the state of the machine instead of anything else so you can access it later faster.
+When you shutdown your vm I suggest saving the state of the machine instead of anything else so you can access it later faster.
