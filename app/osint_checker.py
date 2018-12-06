@@ -30,7 +30,6 @@ def set_mode(option):
 
 
 def set_api_keys():
-    print 'Setting API key'
     fname = current_folder + 'api_keys'
     print(current_folder)
     with open(fname) as f_in:
@@ -72,7 +71,10 @@ def check_IPs(IP_addresses, api_key, flag_abuseIPDB):
             # print time_start
 
             if flag_abuseIPDB:
-                AIPDB.check(result, days, api_key.abuseIPDB)
+                if not AIPDB.check(result, days, api_key.abuseIPDB):
+                    print '{0} your API Quota https://www.abuseipdb.com/account#api-settings'.format(colored('Check', 'red', attrs=['bold']))
+                    print 'It looks like you have run out requests for today.\n'
+                    return results
 
             results.append(result)
             check_timeout(time_start)
@@ -134,7 +136,7 @@ def main():
     # FP.print_results(results_osint)
     FP.write_file(fname, results_osint)
     time_end_program = Decimal(time.time())
-    print time_end_program - time_start_program
+    print 'Total runtime in seconds: {0}'.format(time_end_program - time_start_program)
 
 
 if __name__ == '__main__':

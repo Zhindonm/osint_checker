@@ -73,7 +73,7 @@ sudo apt-get install python-pip
 
  In your Guest OS you will need to mount the folder **logs** found in this project and the one from the Host
 
-`sudo mount -t vboxsf -o rw,uid=1000,gid=1000 foo /path/to/osint_checker/logs`
+`sudo mount -t vboxsf -o rw,uid=1000,gid=1000 foo /path/to/this/project/osint_checker/logs/`
 
  Make sure you replace **foo**  with the correct name. Do not use spaces in the names unless you are more familiar with the command line.
 
