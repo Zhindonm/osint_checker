@@ -30,6 +30,7 @@ def set_mode(option):
 
 
 def set_api_keys():
+    print 'Setting API key'
     fname = current_folder + 'api_keys'
     print(current_folder)
     with open(fname) as f_in:
@@ -92,7 +93,7 @@ def check_timeout(start):
     time_passed = current - start
     #print time_passed
 
-    if time_passed < timeout_abuseIPDB:
+    if time_passed <= timeout_abuseIPDB:
         time_to_wait = timeout_abuseIPDB - time_passed
         #print 'sleeping for ' + str(time_to_wait)
         #print time_to_wait
@@ -113,9 +114,12 @@ def main():
     # print sys.argv[1]
     time_start_program = Decimal(time.time())
 
+    api_key = api_keys.API_KEYS()
     api_key = set_api_keys()
 
-    fname = FP.get_fname()
+    # fname = FP.get_fname()
+    Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
+    fname = askopenfilename()
 
     mode = set_mode(sys.argv[1])
 
@@ -127,7 +131,7 @@ def main():
     # FP.print_results(results_osint)
     FP.write_file(fname, results_osint)
     time_end_program = Decimal(time.time())
-    #print time_end_program - time_start_program
+    print time_end_program - time_start_program
 
 
 if __name__ == '__main__':

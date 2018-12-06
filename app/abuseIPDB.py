@@ -52,6 +52,23 @@ def get_category(num):
         23: 'IoT_Targeted',}.get(num)
 
 
+def count_categories(result, record):
+    categories = record.get('category')
+    if not categories:
+        if type(categories) is list:
+            for num in categories:
+                if num in range(3, 24):
+                    category = get_category(num)
+                    #print category
+                    result.categories[category] +=  1
+        else:
+            num = categories
+            if num in range(3, 24):
+                category = get_category(num)
+                #print category
+                result.categories[category] +=  1
+
+
 def check(result, days, api_key):
 
     IP = result.IP
@@ -70,12 +87,7 @@ def check(result, days, api_key):
         # Reads all the records to compile how many reports each
         # category has
         for record in data:
-            categories = record.get('category')
-            for num in categories:
-                category = get_category(num)
-                #print category
-                result.categories[category] +=  1
-
+            count_categories(result, record)
 
         score = data[0].get('abuseConfidenceScore')
         numOfReports = len(data)
@@ -86,12 +98,7 @@ def check(result, days, api_key):
 
 
     else:
-        categories = data.get('category')
-        for num in categories:
-            category = get_category(num)
-            #print category
-            result.categories[category] +=  1
-
+        count_categories(result, data)
 
         score = data.get('abuseConfidenceScore')
         numOfReports = 1

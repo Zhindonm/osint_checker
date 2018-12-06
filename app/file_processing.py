@@ -3,6 +3,7 @@ import pandas
 import datetime
 import validation
 import result as r
+from Tkinter import Tk
 from termcolor import colored, cprint
 
 
@@ -49,10 +50,10 @@ def read_file(fname, mode):
     return IP_addresses
 
 def get_fname():
-    # Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
-    # fname = askopenfilename()
+    Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
+    fname = askopenfilename()
 
-    fname = '/home/mzhindon/share/test2.csv' # Hard coded  file for debugging
+    # fname = '/home/mzhindon/share/test2.csv' # Hard coded  file for debugging
 
     return fname
 

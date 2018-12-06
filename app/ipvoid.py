@@ -43,7 +43,7 @@ def check():
     return time_end - time_start
 
 TOTAL = 0
-n = 100
+n = 500
 highest = 0
 lowest = 0
 for x in range(0, n):
